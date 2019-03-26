@@ -1,9 +1,12 @@
-agent { 
-    dockerfile true
+pipeline {
+    agent { 
+        dockerfile true
+    }
+
     stages {
         stage('Clean') {
             steps {
-                sh 'atlas-package'
+                sh 'atlas-clean'
             }
         }
         stage('Build') {
@@ -12,6 +15,7 @@ agent {
             }
         }
     }
+
     post {
         always {
             junit 'target/surefire-reports/*.xml'
@@ -19,4 +23,5 @@ agent {
             archiveArtifacts artifacts: '/target/**', excludes: '**/*-test.jar', fingerprint: true
         }
     }
+
 }
