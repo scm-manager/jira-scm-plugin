@@ -1,10 +1,15 @@
-FROM openjdk:8u181-jdk
+FROM amazoncorretto:8u202
 
 # install atlassian-sdk
-RUN apt-get update \
- && apt-get install apt-transport-https \
- && echo "deb https://packages.atlassian.com/atlassian-sdk-deb stable contrib" >>/etc/apt/sources.list \
- && wget -O- https://packages.atlassian.com/api/gpg/key/public | apt-key add - \
- && apt-get update \
- && apt-get install atlassian-plugin-sdk \
- && apt-get clean
+RUN echo "[Artifactory]" > /etc/yum.repos.d/artifactory.repo \
+ && echo "name=Artifactory" >> /etc/yum.repos.d/artifactory.repo \
+ && echo "baseurl=https://packages.atlassian.com/atlassian-sdk-rpm/" >> /etc/yum.repos.d/artifactory.repo \
+ && echo "enabled=1" >> /etc/yum.repos.d/artifactory.repo \
+ && echo "gpgcheck=0" >> /etc/yum.repos.d/artifactory.repo \
+ && yum updateinfo metadata \
+ && yum install -y install atlassian-plugin-sdk \
+ && yum clean all \
+ && rm -rf /var/cache/yum
+
+ENV LANG C.utf8
+ENV JAVA_HOME=/usr/lib/jvm/java-1.8.0-amazon-corretto.x86_64
