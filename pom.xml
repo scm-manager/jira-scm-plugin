@@ -35,6 +35,15 @@
             <scope>provided</scope>
         </dependency>
         -->
+
+        <dependency>
+            <groupId>com.atlassian.templaterenderer</groupId>
+            <artifactId>atlassian-template-renderer-api</artifactId>
+            <!-- i don't know the correct version, this is the latest i've found -->
+            <version>4.0.0</version>
+            <scope>provided</scope>
+        </dependency>
+
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>

@@ -20,5 +20,18 @@
 
         <context>jira-scm-plugin</context>
     </web-resource>
-    
+
+    <!-- https://developer.atlassian.com/server/jira/platform/web-panel/ -->
+
+    <web-item key="jira-scm-plugin-settings" name="SCM-Settings" section="atl.jira.proj.config/projectgroup4" weight="200">
+        <description key="item-2.description">Settings for SCM-Manager integration</description>
+        <label key="SCM-Manager Integration" />
+        <link linkId="item-2-link">/plugins/servlet/scm-manager/settings?project=$projectKeyEncoded</link>
+    </web-item>
+
+    <servlet key="scm-project-settings-servlet" class="com.cloudogu.scm.impl.ProjectSettingsServlet">
+        <url-pattern>/scm-manager/settings</url-pattern>
+    </servlet>
+
+
 </atlassian-plugin>
