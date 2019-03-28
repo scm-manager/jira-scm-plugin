@@ -7,6 +7,16 @@
 <body>
 <form id="admin" class="aui" method="post">
     <h1>SCM-Manager Settings</h1>
+
+    #if ($error.length > 0)
+    <div class="aui-message aui-message-error">
+        <p class="title">
+            <strong>Error</strong>
+        </p>
+        <p>$error</p>
+    </div>
+    #end
+
     <input type="hidden" name="project" value="$project">
     <div class="field-group">
         <label for="name">Repository URL:</label>

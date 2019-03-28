@@ -2,9 +2,8 @@ package com.cloudogu.scm.impl;
 
 import com.atlassian.plugin.spring.scanner.annotation.component.Scanned;
 import com.atlassian.plugin.spring.scanner.annotation.imports.ComponentImport;
-import com.atlassian.sal.api.pluginsettings.PluginSettings;
-import com.atlassian.sal.api.pluginsettings.PluginSettingsFactory;
 import com.atlassian.templaterenderer.TemplateRenderer;
+import com.cloudogu.scm.api.ScmSettings;
 import com.google.common.base.Strings;
 import com.google.common.collect.ImmutableMap;
 
@@ -22,46 +21,51 @@ public class ProjectSettingsServlet extends HttpServlet {
     private final TemplateRenderer renderer;
 
     @ComponentImport
-    private final PluginSettingsFactory settingsFactory;
+    private final ScmSettings scmSettings;
 
     @Inject
-    public ProjectSettingsServlet(TemplateRenderer renderer, PluginSettingsFactory settingsFactory) {
+    public ProjectSettingsServlet(TemplateRenderer renderer, ScmSettings scmSettings) {
         this.renderer = renderer;
-        this.settingsFactory = settingsFactory;
+        this.scmSettings = scmSettings;
     }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        renderSettings(request, response);
+        String project = request.getParameter("project");
+        String repository = scmSettings.getRepositoryURL(project);
+
+        renderSettings(response, project, repository, null);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String project = request.getParameter("project");
         String repository = request.getParameter("repository");
+        String error = null;
+
+        if (Validations.isValidURL(repository)) {
+            scmSettings.setRepositoryURL(project, repository);
+        } else {
+            error = "invalid repository url";
+        }
 
 
-        PluginSettings settings = settingsFactory.createSettingsForKey(project);
-        settings.put("repository", repository);
-
-        renderSettings(request, response);
+        renderSettings(response, project, repository, error);
     }
 
-    private Map<String,Object> createModel(String project, String repository) {
-        return ImmutableMap.of("project", project, "repository", Strings.nullToEmpty(repository));
-    }
+    private void renderSettings(HttpServletResponse response, String project, String repository, String error) throws IOException {
+        Map<String, Object> model = createModel(project, repository, error);
 
-    private void renderSettings(HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.setContentType("text/html;charset=utf-8");
-
-        String project = request.getParameter("project");
-
-        PluginSettings settings = settingsFactory.createSettingsForKey(project);
-
-        String repository = (String) settings.get("repository");
-
-        Map<String, Object> model = createModel(project, repository);
-
         renderer.render("settings.vm", model, response.getWriter());
     }
+
+    private Map<String,Object> createModel(String project, String repository, String error) {
+        return ImmutableMap.of(
+                "project", project,
+                "repository", Strings.nullToEmpty(repository),
+                "error", Strings.nullToEmpty(error)
+        );
+    }
+
 }
