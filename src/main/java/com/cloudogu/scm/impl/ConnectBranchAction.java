@@ -12,6 +12,7 @@ import com.atlassian.plugin.spring.scanner.annotation.imports.ComponentImport;
 import javax.inject.Inject;
 
 @Scanned
+@SuppressWarnings("squid:S1948") // serializable
 public class ConnectBranchAction extends JiraWebActionSupport {
 
     @ComponentImport
