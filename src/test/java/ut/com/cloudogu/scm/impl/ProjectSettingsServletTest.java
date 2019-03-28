@@ -104,6 +104,6 @@ public class ProjectSettingsServletTest {
         assertEquals(repositoryURL, model.get("repository"));
         assertEquals(Strings.nullToEmpty(error), model.get("error"));
 
-        assertEquals("settings.vm", templateCaptor.getValue());
+        assertEquals("templates/settings.vm", templateCaptor.getValue());
     }
 }

@@ -55,7 +55,7 @@ public class ProjectSettingsServlet extends HttpServlet {
         Map<String, Object> model = createModel(project, repository, error);
 
         response.setContentType("text/html;charset=utf-8");
-        renderer.render("settings.vm", model, response.getWriter());
+        renderer.render("templates/settings.vm", model, response.getWriter());
     }
 
     private Map<String,Object> createModel(String project, String repository, String error) {

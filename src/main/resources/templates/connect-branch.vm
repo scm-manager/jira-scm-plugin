@@ -1,6 +1,6 @@
 <html>
 <head>
-    <title>Titel</title>
+    <title>Connect Issue with SCM-Manager Branch</title>
     #if (${action.errorMessages.empty})
         <meta name="decorator" content="issueaction" />
     #else
@@ -14,7 +14,7 @@
             <div class="hidden">
                 <input name="atl_token" type="hidden" value="${action.xsrfToken}">
             </div>
-            <h2 class="dialog-title">Dialog Title</h2>
+            <h2 class="dialog-title">Connect ${action.issueObject.key} with SCM-Manager branch</h2>
             <div class="hidden">
                 <input name="id" type="hidden" value="${action.id}">
                 <input name="returnUrl" type="hidden" value="${action.returnUrl}">

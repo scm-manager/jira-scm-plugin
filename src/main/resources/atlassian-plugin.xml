@@ -63,8 +63,8 @@
         <description key="scmm-connect-branch-webwork-module.description">Connect SCM-Manager Branch</description>
         <actions>
             <action name="com.cloudogu.scm.impl.ConnectBranchAction" alias="ConnectBranchAction">
-                <view name="input">/connect-branch.vm</view>
-                <view name="error">/connect-branch.vm</view>
+                <view name="input">/templates/connect-branch.vm</view>
+                <view name="error">/templates/connect-branch.vm</view>
             </action>
         </actions>
     </webwork1>
