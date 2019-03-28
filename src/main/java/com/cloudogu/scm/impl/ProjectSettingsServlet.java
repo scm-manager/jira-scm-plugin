@@ -19,8 +19,6 @@ public class ProjectSettingsServlet extends HttpServlet {
 
     @ComponentImport
     private final TemplateRenderer renderer;
-
-    @ComponentImport
     private final ScmSettings scmSettings;
 
     @Inject
