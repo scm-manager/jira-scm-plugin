@@ -44,9 +44,12 @@
 
     <web-section key="scmm-section" name="SCM-Manager Section" location="opsbar-operations" weight="65">
         <conditions type="and">
-            <condition class="com.cloudogu.scm.impl.IsConfiguredCondition">
-                <param name="entity">project</param>
+            <condition class="com.atlassian.jira.plugin.webfragment.conditions.UserLoggedInCondition" />
+            <condition class="com.atlassian.jira.plugin.webfragment.conditions.IsIssueEditableCondition" />
+            <condition class="com.atlassian.jira.plugin.webfragment.conditions.HasIssuePermissionCondition">
+                <param name="permission" value="edit"/>
             </condition>
+            <condition class="com.cloudogu.scm.impl.IsConfiguredCondition" />
         </conditions>
     </web-section>
 
