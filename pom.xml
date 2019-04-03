@@ -10,12 +10,12 @@
     <version>1.0.0-SNAPSHOT</version>
 
     <organization>
-        <name>Example Company</name>
-        <url>http://www.example.com/</url>
+        <name>Cloudogu GmbH</name>
+        <url>https://cloudogu.com</url>
     </organization>
 
-    <name>jira-scm-plugin</name>
-    <description>This is the com.cloudogu.scm:jira-scm-plugin plugin for Atlassian JIRA.</description>
+    <name>SCM-Manager Integration</name>
+    <description>Integrates SCM-Manager 2 with Atlassian JIRA.</description>
     <packaging>atlassian-plugin</packaging>
 
     <dependencies>
