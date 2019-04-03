@@ -53,7 +53,7 @@ public class BranchLinkCreator {
         if (!branchUrl.endsWith("/")) {
             branchUrl += "/";
         }
-        return branchUrl + "branches/" + UrlEscapers.urlPathSegmentEscaper().escape(branch);
+        return branchUrl + "branch/" + UrlEscapers.urlPathSegmentEscaper().escape(branch) + "?create=true";
     }
 
 }

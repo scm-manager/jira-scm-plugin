@@ -41,7 +41,7 @@ public class BranchLinkCreatorTest {
         prepareMocks("SCM", "https://scm.cloudogu.com/repo/ns/name", "/scmicon.png");
 
         RemoteIssueLink link = branchLinkCreator.createLink(issue, "feature/SCM-1_awesome_stuff");
-        assertEquals("https://scm.cloudogu.com/repo/ns/name/branches/feature%2FSCM-1_awesome_stuff", link.getUrl());
+        assertEquals("https://scm.cloudogu.com/repo/ns/name/branch/feature%2FSCM-1_awesome_stuff?create=true", link.getUrl());
         assertEquals("/scmicon.png", link.getIconUrl());
         assertEquals(BranchLinkCreator.ICON_TITLE, link.getIconTitle());
         assertEquals(BranchLinkCreator.RELATIONSHIP, link.getRelationship());
