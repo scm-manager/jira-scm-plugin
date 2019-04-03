@@ -1,6 +1,6 @@
 <html>
 <head>
-    <title>Connect Issue with SCM-Manager Branch</title>
+    <title>$i18n.getText("issue.connect-panel.title", [$action.issueObject.key])</title>
     #if (${action.errorMessages.empty})
         <meta name="decorator" content="issueaction" />
     #else
@@ -14,15 +14,15 @@
             <div class="hidden">
                 <input name="atl_token" type="hidden" value="${action.xsrfToken}">
             </div>
-            <h2 class="dialog-title">Connect ${action.issueObject.key} with SCM-Manager branch</h2>
+            <h2 class="dialog-title">$i18n.getText("issue.connect-panel.title", [$action.issueObject.key])</h2>
             <div class="hidden">
                 <input name="id" type="hidden" value="${action.id}">
                 <input name="returnUrl" type="hidden" value="${action.returnUrl}">
             </div>
             <fieldset>
-                <legend><span>Details</span></legend>
+                <legend><span>$i18n.getText("issue.connect-panel.fieldset")</span></legend>
                 <div class="field-group">
-                    <label for="name">Branch:</label>
+                    <label for="name">$i18n.getText("issue.connect-panel.fieldset.branch")</label>
                     <input id="branch" type="text" name="branch" class="text" value="${action.branch}">
                 </div>
             </fieldset>
@@ -30,8 +30,8 @@
 
         <div class="buttons-container form-footer">
             <div class="buttons">
-                <input id="connect-branch-submit" class="button" name="Connect" type="submit" value="Connect">
-                <a id="connect-branch-cancel" class="cancel" href="#">Cancel</a>
+                <input id="connect-branch-submit" class="button" name="Connect" type="submit" value="$i18n.getText("issue.connect-panel.buttons.submit")">
+                <a id="connect-branch-cancel" class="cancel" href="#">$i18n.getText("issue.connect-panel.buttons.cancel")</a>
             </div>
         </div>
     </form>

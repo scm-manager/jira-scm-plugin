@@ -1,5 +1,6 @@
 package ut.com.cloudogu.scm.impl;
 
+import com.atlassian.sal.api.message.I18nResolver;
 import com.atlassian.templaterenderer.TemplateRenderer;
 import com.cloudogu.scm.api.ScmSettings;
 import com.cloudogu.scm.impl.ProjectSettingsServlet;
@@ -27,6 +28,9 @@ public class ProjectSettingsServletTest {
 
     @Mock
     private TemplateRenderer renderer;
+
+    @Mock
+    private I18nResolver i18n;
 
     @Mock
     private ScmSettings scmSettings;
@@ -79,6 +83,7 @@ public class ProjectSettingsServletTest {
         when(request.getMethod()).thenReturn("POST");
         when(request.getParameter("project")).thenReturn("TST");
         when(request.getParameter("repository")).thenReturn("abc");
+        when(i18n.getText("project.settings.error.invalid-repository-url")).thenReturn("invalid repository url");
 
         servlet.service(request, response);
 

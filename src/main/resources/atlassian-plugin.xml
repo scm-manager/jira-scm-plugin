@@ -26,9 +26,9 @@
 
     <!-- project settings -->
 
-    <web-item key="jira-scm-plugin-settings" name="SCM-Settings" section="atl.jira.proj.config/projectgroup4" weight="200">
-        <description key="item-2.description">Settings for SCM-Manager integration</description>
-        <label key="SCM-Manager Integration" />
+    <web-item key="project.settings" section="atl.jira.proj.config/projectgroup4" weight="200">
+        <label key="project.settings.label" />
+        <description key="project.settings.description" />
         <link linkId="item-2-link">/plugins/servlet/scm-manager/settings?project=$projectKeyEncoded</link>
     </web-item>
 
@@ -42,7 +42,7 @@
     https://developer.atlassian.com/server/jira/platform/creating-an-ajax-dialog/
     -->
 
-    <web-section key="scmm-section" name="SCM-Manager Section" location="opsbar-operations" weight="65">
+    <web-section key="issue.section" location="opsbar-operations" weight="65">
         <conditions type="and">
             <condition class="com.atlassian.jira.plugin.webfragment.conditions.UserLoggedInCondition" />
             <condition class="com.atlassian.jira.plugin.webfragment.conditions.IsIssueEditableCondition" />
@@ -53,23 +53,19 @@
         </conditions>
     </web-section>
 
-    <web-item key="scmm-connect-branch" name="SCM-Manager connect branch" section="scmm-section" weight="10">
-        <label>Connect SCM-Manager Branch</label>
+    <web-item key="issue.connect-branch-link" section="issue.section" weight="10">
+        <label key="issue.connect-branch-link.label" />
+        <description key="issue.connect-branch-link.description" />
         <link linkId="scmm-connect-branch-link">/secure/ConnectBranchAction!default.jspa?id=${issue.id}</link>
     </web-item>
 
-    <!-- use link dialog
-         https://developer.atlassian.com/server/jira/platform/creating-a-custom-issue-link-dialog-for-remote-issue-links/
-    <web-item key="scmm-connect-branch-a-link" section="create-issue-link-types" weight="100">
-        <label key="scmm-connect-branch-a.label" />
-        <link linkId="scmm-connect-branch-a-link">
-            /secure/ConnectBranchAction!default.jspa?id=${issueId}
-        </link>
-    </web-item>
+    <!--
+    instead of custom panel, we could use the link dialog:
+    https://developer.atlassian.com/server/jira/platform/creating-a-custom-issue-link-dialog-for-remote-issue-links/
     -->
 
-    <webwork1 key="scmm-connect-branch-webwork-module" name="SCM-Manager Connect Branch Webwork Module">
-        <description key="scmm-connect-branch-webwork-module.description">Connect SCM-Manager Branch</description>
+    <webwork1 key="issue.connect-panel">
+        <description key="issue.connect-panel.description" />
         <actions>
             <action name="com.cloudogu.scm.impl.ConnectBranchAction" alias="ConnectBranchAction">
                 <view name="input">/templates/connect-branch.vm</view>

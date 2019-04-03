@@ -3,6 +3,7 @@ package ut.com.cloudogu.scm.impl;
 import com.atlassian.jira.issue.Issue;
 import com.atlassian.jira.issue.link.RemoteIssueLink;
 import com.atlassian.jira.project.Project;
+import com.atlassian.sal.api.message.I18nResolver;
 import com.cloudogu.scm.api.ScmSettings;
 import com.cloudogu.scm.impl.BranchLinkCreator;
 import com.cloudogu.scm.impl.ResourceUrlProvider;
@@ -13,6 +14,7 @@ import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
 import static org.junit.Assert.assertEquals;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -24,6 +26,9 @@ public class BranchLinkCreatorTest {
 
     @Mock
     private ScmSettings scmSettings;
+
+    @Mock
+    private I18nResolver i18n;
 
     @InjectMocks
     private BranchLinkCreator branchLinkCreator;
@@ -48,6 +53,7 @@ public class BranchLinkCreatorTest {
         when(issue.getProjectObject()).thenReturn(project);
         when(scmSettings.getRepositoryURL(projectKey)).thenReturn(repositoryUrl);
         when(resourceUrlProvider.getIconUrl()).thenReturn(iconUrl);
+        when(i18n.getText(anyString())).thenAnswer(ic -> ic.getArgument(0));
         return issue;
     }
 

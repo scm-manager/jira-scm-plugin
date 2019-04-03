@@ -1,17 +1,17 @@
 <html>
 <head>
-    <title>SCM-Manager Settings</title>
+    <title>$i18n.getText("project.settings.title")</title>
     <meta name="decorator" content="atl.admin">
     $webResourceManager.requireResource("com.atlassian.auiplugin:ajs")
 </head>
 <body>
 <form id="admin" class="aui" method="post">
-    <h1>SCM-Manager Settings</h1>
+    <h1>$i18n.getText("project.settings.title")</h1>
 
     #if (!$error.empty)
     <div class="aui-message aui-message-error">
         <p class="title">
-            <strong>Error</strong>
+            <strong>$i18n.getText("project.settings.error")</strong>
         </p>
         <p>$error</p>
     </div>
@@ -19,11 +19,11 @@
 
     <input type="hidden" name="project" value="$project">
     <div class="field-group">
-        <label for="name">Repository URL:</label>
+        <label for="name">$i18n.getText("project.settings.field.repository-url"):</label>
         <input type="text" id="name" name="repository" class="text" value="$repository">
     </div>
     <div class="field-group">
-        <input type="submit" value="Save" class="button">
+        <input type="submit" value="$i18n.getText("project.settings.button.submit")" class="button">
     </div>
 </form>
 </body>

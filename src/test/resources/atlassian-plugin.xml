@@ -6,7 +6,6 @@
     </plugin-info>
 
     <!-- from our base plugin -->
-    <component-import key="myComponent" interface="com.cloudogu.scm.api.MyPluginComponent"/>
     <component-import key="scmSettings" interface="com.cloudogu.scm.api.ScmSettings"/>
 
     <!-- from the product container -->
