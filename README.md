@@ -34,3 +34,14 @@ Find the atlassian documentation here:
 
 https://developer.atlassian.com/display/DOCS/Introduction+to+the+Atlassian+Plugin+SDK
 
+# Installation
+
+To install the plugin,
+
+- log in to Jira as an administrator
+- go to "Administration" (the gear on the upper right)
+- select "Add-ons"
+- select "Manage add-ons" on the left
+- click "Upload add-on"
+- select the plugin file (eg. jira-scm-plugin-1.0.0.obr)
+
