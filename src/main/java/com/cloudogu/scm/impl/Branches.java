@@ -8,7 +8,7 @@ import java.util.Locale;
 public final class Branches {
 
     private static final CharMatcher ALLOWED_CHARS_MATCHER =  CharMatcher.inRange('a', 'z')
-            .or(CharMatcher.DIGIT)
+            .or(CharMatcher.inRange('0', '9'))
             .or(CharMatcher.is('_'));
 
     private Branches() {
@@ -28,7 +28,7 @@ public final class Branches {
 
     private static String normalizeSummary(String summary) {
         String lowerCase = summary.toLowerCase(Locale.ENGLISH);
-        lowerCase = CharMatcher.WHITESPACE.replaceFrom(lowerCase, "_");
+        lowerCase = CharMatcher.whitespace().replaceFrom(lowerCase, "_");
         String normalized = ALLOWED_CHARS_MATCHER.retainFrom(lowerCase);
         if (normalized.length() > 24) {
             return normalized.substring(0, 24);
